@@ -1,5 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: "#000000";
+  color: "#f3f3f3";
+  font-family: "Archivo", "Inter", "Roboto", sans-serif;
 }
