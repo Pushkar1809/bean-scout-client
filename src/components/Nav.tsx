@@ -2,7 +2,7 @@ import bsLogo from '../assets/bs.svg';
 
 const Nav = () => {
   return (
-		<nav className="bg-dark text-light flex items-center justify-between w-full fixed px-[15rem] py-5">
+		<nav className="bg-dark text-light flex items-center justify-between w-full fixed px-[15rem] py-5 z-[999]">
 			<img
 				src={bsLogo}
 				alt="Logo"
@@ -14,7 +14,7 @@ const Nav = () => {
 					className="opacity-80 hover:opacity-100 hover:text-primary text-sm font-light transition-all ease-in-out duration-200">
 					All Shops
 				</a>
-				<button className="bg-light text-dark px-3 py-1 rounded hover:brightness-110 transition-all ease-out duration-200">
+				<button className="bg-light text-dark px-3 py-1 rounded hover:brightness-110 transition-all ease-out duration-200 text-sm">
 					Sign In
 				</button>
 			</div>
