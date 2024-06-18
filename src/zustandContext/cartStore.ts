@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface CartItem {
+export interface CartItem {
   itemId: string;
   quantity: number;
 };
@@ -10,13 +10,42 @@ type State = {
 };
 
 type Action = {
-	addToCart: (cartItem: CartItem) => void;
-  removeFromCart: (cartItem: CartItem) => void;
+	addToCart: (itemId: string) => void;
+  removeFromCart: (itemId: string) => void;
 };
 
 export const useCartStore = create<State & Action>((set) => ({
   cart: [],
-  addToCart: (item: CartItem) => set((state) => ({ cart: [...state.cart, item] })),
-  removeFromCart: (item: CartItem) =>
-    set((state) => ({ cart: state.cart.filter((i) => i.itemId !== item.itemId) })),
+  addToCart: (itemId: string) => set((state) => {
+    const itemInCart = state.cart.find((i) => i.itemId === itemId);
+    if (itemInCart) {
+      return {
+        cart: state.cart.map((i) => {
+          if (i.itemId === itemId) {
+            return { ...i, quantity: i.quantity + 1 };
+          }
+          return i;
+        }),
+      };
+    }
+    return { cart: [...state.cart, {
+      itemId: itemId,
+      quantity: 1,
+    }] };
+  }),
+  removeFromCart: (itemId: string) =>
+    set((state) => {
+      const itemInCart = state.cart.find((i) => i.itemId === itemId);
+      if (itemInCart && itemInCart.quantity && itemInCart.quantity > 1) {
+        return {
+          cart: state.cart.map((i) => {
+            if (i.itemId === itemId) {
+              return { ...i, quantity: i.quantity - 1 };
+            }
+            return i;
+          }),
+        };
+      }
+      return { cart: state.cart.filter((i) => i.itemId !== itemId) };
+    }),
 }));
