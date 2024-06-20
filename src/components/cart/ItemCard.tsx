@@ -38,6 +38,11 @@ const ItemCard = ({ itemId, setTotal }: { itemId: string, setTotal: (t: (prev: n
 		if (item) {
 			setTotal((prev: number) => prev + item.price * quantity);
 		}
+		return () => {
+			if (item) {
+				setTotal((prev: number) => prev - item.price * quantity);
+			}
+		}
 	}, [item, quantity, setTotal])
 
 	if (!item) return null;

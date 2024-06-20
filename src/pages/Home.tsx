@@ -3,8 +3,27 @@ import { useQuery } from "@tanstack/react-query";
 import { API_BASE_URL } from "../constants";
 import axios from "axios";
 import { FaArrowRight } from "react-icons/fa";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useUserStore } from "../zustandContext/userStore";
 
 const Home = () => {
+	const [searchParams] = useSearchParams();
+	const setUser = useUserStore((state) => state.setUser);
+
+	const { data: user } = useQuery(
+		{
+			queryKey: ["user"],
+			queryFn: async () => {
+				const response = await axios.get(
+					`${API_BASE_URL}/user/${searchParams.get("userId")}`,
+				);
+				return response.data.data;
+			},
+			enabled: !!searchParams.get("userId"),
+		},
+	);
+
 	const { data: shops } = useQuery({
 		queryKey: ["shops"],
 		queryFn: async () => {
@@ -21,9 +40,17 @@ const Home = () => {
 		},
 	});
 
+	useEffect(() => {
+		if (searchParams.get("userId")) {
+			localStorage.setItem("userId", searchParams.get("userId") as string);
+		}
+		if (user) {
+			setUser(user);
+		}
+	}, [user]);
 
 	return (
-		<main className="w-screen h-screen relative bg-dark text-light pt-[6rem] flex items-center justify-between max-w-[80vw] mx-auto overflow-hidden">
+		<main className="w-screen h-screen relative bg-dark text-light pt-[6rem] flex items-center justify-between max-w-[135ch] mx-auto overflow-hidden">
 			<div className="absolute w-[70vh] aspect-video rounded-[30vw] rotate-60 bg-primary/60 blur-3xl bottom-[-30vh] left-[40%] translate-x-[-50%]" />
 			<div>
 				<div>

@@ -43,7 +43,7 @@ const Menu = () => {
 
 	if (!shop)
 		return (
-			<main className="pt-[10rem] flex flex-col justify-center items-center">
+			<main className="pt-[10rem] max-w-[135ch] flex flex-col justify-center items-center">
 				<TbError404 size={96} className="opacity-70 text-primary" />
 				<h2 className="text-2xl font-light ">Café Not Found.</h2>
 				<button

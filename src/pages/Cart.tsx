@@ -3,27 +3,55 @@ import ItemCard from "../components/cart/ItemCard";
 import { useCartStore } from "../zustandContext/cartStore";
 import { SiBuymeacoffee } from "react-icons/si";
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import AuthModal from "../components/cart/AuthModal";
+import { useUserStore } from "../zustandContext/userStore";
+import SuccessModal from "../components/cart/SuccessModal";
 
 const Cart = () => {
+	const user = useUserStore((state) => state.user);
 	const [total, setTotal] = useState(0);
+	const [isAuthModal, setIsAuthModal] = useState<boolean>(!user);
+	const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
 	const cart = useCartStore((state) => state.cart);
 	const navigate = useNavigate();
 
+	useEffect(() => {
+		if(!!user) {
+			setIsAuthModal(false);
+		}
+	}, [user]);
+
 	if (cart.length === 0) {
 		return (
-			<main className="pt-[10rem] flex flex-col justify-center items-center">
+			<main className="relative pt-[10rem] max-w-[135ch] flex flex-col justify-center items-center">
+				{isAuthModal && <AuthModal setIsAuthModal={setIsAuthModal} />}
+				{isSuccessModal && (
+					<SuccessModal setIsSuccessModal={setIsSuccessModal} />
+				)}
 				<SiBuymeacoffee size={56} className="text-primary animate-breathe" />
 				<h2 className="font-semibold text-lg">Your Basket is Empty</h2>
-				<p className="text-sm font-light text-light/70">Looks like you haven't added anything to your basket yet.</p>
-				<button onClick={() => navigate("/shops")} className="bg-light rounded-full px-4 py-2 text-sm text-dark flex justify-center items-center gap-1 hover:brightness-110 transition-all ease-in-out duration-200 group mt-3"><FaArrowLeft className="group-hover:-rotate-45 transition-all ease-in-out duration-200" size={12} />Explore Cafés</button>
+				<p className="text-sm font-light text-light/70">
+					Looks like you haven't added anything to your basket yet.
+				</p>
+				<button
+					onClick={() => navigate("/shops")}
+					className="bg-light rounded-full px-4 py-2 text-sm text-dark flex justify-center items-center gap-1 hover:brightness-110 transition-all ease-in-out duration-200 group mt-3">
+					<FaArrowLeft
+						className="group-hover:-rotate-45 transition-all ease-in-out duration-200"
+						size={12}
+					/>
+					Explore Cafés
+				</button>
 			</main>
 		);
 	}
 
 	return (
-		<main className="pt-[6rem] max-w-[135ch] flex flex-col justify-center items-center mx-auto">
+		<main className="relative pt-[6rem] max-w-[135ch] flex flex-col justify-center items-center mx-auto">
 			{/* Cart */}
+			{isAuthModal && <AuthModal setIsAuthModal={setIsAuthModal} />}
+			{isSuccessModal && <SuccessModal setIsSuccessModal={setIsSuccessModal} />}
 			<div className="flex justify-between items-start gap-5 w-full">
 				<div className="border border-light/30 border-dashed p-8 w-8/12 rounded-xl">
 					<h1 className="text-3xl font-bold">Your Basket</h1>
