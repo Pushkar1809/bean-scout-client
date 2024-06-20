@@ -59,7 +59,7 @@ const ItemCard = ({ itemId, setTotal }: { itemId: string, setTotal: (t: (prev: n
 				<h3 className="text-xl font-bold">{item.name}</h3>
 				<p className="text-sm text-light/80 mb-1">{item.description}</p>
 			</div>
-			<div className="w-4/12 relative flex justify-end items-center gap-10">
+			<div className="w-4/12 relative flex flex-col md:flex-row justify-center md:justify-end items-center gap-1 md:gap-10">
 				<div className="flex justify-center items-center gap-2 rounded bg-light/80 text-dark border border-success/50">
 					<button
 						onClick={() => removeFromCart(item._id)}

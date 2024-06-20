@@ -24,7 +24,7 @@ const Cart = () => {
 
 	if (cart.length === 0) {
 		return (
-			<main className="relative pt-[10rem] max-w-[135ch] flex flex-col justify-center items-center">
+			<main className="relative pt-[10rem] max-w-[135ch] flex flex-col justify-center items-center mx-auto">
 				{isAuthModal && <AuthModal setIsAuthModal={setIsAuthModal} />}
 				{isSuccessModal && (
 					<SuccessModal setIsSuccessModal={setIsSuccessModal} />
@@ -48,12 +48,12 @@ const Cart = () => {
 	}
 
 	return (
-		<main className="relative pt-[6rem] max-w-[135ch] flex flex-col justify-center items-center mx-auto">
+		<main className="relative pt-[6rem] pb-5 max-w-[135ch] flex flex-col justify-center items-center mx-auto">
 			{/* Cart */}
 			{isAuthModal && <AuthModal setIsAuthModal={setIsAuthModal} />}
 			{isSuccessModal && <SuccessModal setIsSuccessModal={setIsSuccessModal} />}
-			<div className="flex justify-between items-start gap-5 w-full">
-				<div className="border border-light/30 border-dashed p-8 w-8/12 rounded-xl">
+			<div className="flex flex-col md:flex-row justify-between items-start gap-5 w-full px-5 md:px-0">
+				<div className="md:border border-light/30 border-dashed md:p-8 w-full md:w-8/12 rounded-xl">
 					<h1 className="text-3xl font-bold">Your Basket</h1>
 					<p className="font-light text-light/80">{cart.length} products</p>
 					<div className="flex flex-col items-start gap-3 my-5 max-h-[65vh] overflow-scroll">
@@ -73,7 +73,7 @@ const Cart = () => {
 				</div>
 
 				{/* Cart Summary */}
-				<div className="w-4/12 bg-light/10 p-8 rounded-xl">
+				<div className="w-full md:w-4/12 bg-light/10 p-3 md:p-8 rounded-xl">
 					<div className="flex justify-between items-center">
 						<h2 className="text-xl font-bold">Basket Summary</h2>
 						<p className="font-light text-light/80 text-sm">
@@ -94,8 +94,8 @@ const Cart = () => {
 					<p className="bg-success/30 text-sm font-light text-success w-fit px-2 rounded-full">
 						Pomotion Applied <span className="font-bold">FREE4ALL</span>
 					</p>
-					<button className="bg-primary text-dark rounded-full px-4 py-2 mt-5 w-full font-semibold">
-						Checkout
+					<button onClick={() => setIsSuccessModal(true)} className="bg-primary text-dark rounded-full px-4 py-2 mt-5 w-full font-semibold">
+						Order
 					</button>
 				</div>
 			</div>

@@ -15,7 +15,7 @@ const ItemCard = ({ item }: { item: Item }) => {
 		<div className="p-5 flex justify-between items-center gap-2 rounded-lg bg-light/5">
 			<div>
 				<h3 className="text-xl font-bold">{item.name}</h3>
-				<p className="text-sm text-light/80 mb-1">{item.description}</p>
+				<p className="text-sm text-light/80 mb-1 hidden md:block">{item.description}</p>
 				<div className="flex items-center text-success">
 					<TiStarFullOutline />
 					<span className="ml-1">{item.rating}</span>
@@ -25,9 +25,9 @@ const ItemCard = ({ item }: { item: Item }) => {
 				</div>
 				<p className="font-mono mt-2 text-lg">${item.price}</p>
 			</div>
-			<div className="w-4/12 relative">
+			<div className="w-6/12 md:w-4/12 relative">
 				{/* <img src={item.imageUrl} alt={item.name} /> */}
-				<div className=" aspect-video rounded-lg block bg-lime-300/20" />
+				<div className="aspect-video rounded-lg block bg-lime-300/20" />
 				{itemInCart ? (
 					<div className="flex justify-center items-center gap-2 rounded bg-light/80 text-dark border border-success/50 absolute mt-2 z-1 bottom-[-4px] right-[50%] translate-x-[50%]">
 						<button

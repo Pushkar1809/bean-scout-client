@@ -43,7 +43,7 @@ const Menu = () => {
 
 	if (!shop)
 		return (
-			<main className="pt-[10rem] max-w-[135ch] flex flex-col justify-center items-center">
+			<main className="pt-[10rem] max-w-[135ch] flex flex-col justify-center items-center mx-auto">
 				<TbError404 size={96} className="opacity-70 text-primary" />
 				<h2 className="text-2xl font-light ">Café Not Found.</h2>
 				<button
@@ -59,8 +59,11 @@ const Menu = () => {
 		);
 
 	return (
-		<main className="pt-[6rem] max-w-[135ch] mx-auto">
+		<main className="pt-[6rem] max-w-[135ch] mx-auto px-5 md:px-0">
 			<ShopBanner shop={shop} />
+			<div className="flex items-center gap-2 mb-6">
+				<h2 className="text-[3rem] font-bold">{shop.name}</h2>
+			</div>
 			<div className="flex items-center gap-2">
 				<button
 					onClick={() => setActiveCategory("all")}

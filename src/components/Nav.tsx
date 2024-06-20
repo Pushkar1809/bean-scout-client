@@ -12,7 +12,7 @@ const Nav = () => {
 	const navigate = useNavigate();
 	const [isAuthModal, setIsAuthModal] = useState<boolean>(false);
 	return (
-		<nav className="bg-dark text-light flex items-center justify-between w-full fixed max-w-[135ch] px-3 md:px-0 py-5 z-[999] left-[50%] translate-x-[-50%]">
+		<nav className="bg-dark text-light flex items-center justify-between w-full fixed max-w-[135ch] px-5 md:px-0 py-5 z-[999] left-[50%] translate-x-[-50%]">
 			<img
 				src={bsLogo}
 				alt="Logo"

@@ -36,7 +36,7 @@ const Shops = () => {
 		);
 
 	return (
-		<main className="pt-[6rem] max-w-[135ch] mx-auto">
+		<main className="pt-[6rem] max-w-[135ch] mx-auto px-5 md:px-0">
 			<ShopBanner shop={shops[0]} isFeatured />
 			<div>
 				<h2 className="text-2xl font-bold mt-8">All Cafés</h2>
