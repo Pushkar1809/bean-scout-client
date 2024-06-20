@@ -61,7 +61,7 @@ const Menu = () => {
 	return (
 		<main className="pt-[6rem] max-w-[135ch] mx-auto px-5 md:px-0">
 			<ShopBanner shop={shop} />
-			<div className="flex items-center gap-2 mb-6">
+			<div className="flex items-center gap-2 mb-6 md:hidden">
 				<h2 className="text-[3rem] font-bold">{shop.name}</h2>
 			</div>
 			<div className="flex items-center gap-2">
